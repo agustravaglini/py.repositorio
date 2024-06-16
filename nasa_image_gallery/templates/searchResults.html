@@ -1,0 +1,9 @@
+<div style="display: grid">
+    {% for image in images %}
+       <div>
+           <img src="{{ image.image_url }}" />
+           <h4>{{ image.title }}</h4>
+           <span>{{ image.description }}</span>
+       </div>
+    {% endfor %}
+</div>
