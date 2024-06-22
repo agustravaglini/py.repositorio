@@ -32,6 +32,7 @@ def home(request):
         imagen=mapper.fromRequestIntoNASACard(json)
         images.append(imagen)
 
+    images, favourite_list = getAllImagesAndFavouriteList(request)
 
     return render(request, 'home.html', {'images': images, 'favourite_list': favourite_list} )
 
