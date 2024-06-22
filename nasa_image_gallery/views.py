@@ -5,6 +5,8 @@ from django.shortcuts import redirect, render
 from .layers.services import services_nasa_image_gallery
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from nasa_image_gallery.layers.transport import transport
+from nasa_image_gallery.layers.generic import mapper
 
 # función que invoca al template del índice de la aplicación.
 def index_page(request):
@@ -23,6 +25,14 @@ def home(request):
     # (*) este último, solo si se desarrolló el opcional de favoritos; caso contrario, será un listado vacío [].
     images = []
     favourite_list = []
+
+    json_collection = transport.getAllImages(input)
+
+    for json in json_collection:
+        imagen=mapper.fromRequestIntoNASACard(json)
+        images.append(imagen)
+
+
     return render(request, 'home.html', {'images': images, 'favourite_list': favourite_list} )
 
 
