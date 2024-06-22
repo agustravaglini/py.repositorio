@@ -4,7 +4,7 @@ import requests
 from ...config import config
 
 # comunicación con la REST API de la NASA.
-def getAllImages(input=None):
+def getAllImages(input):
     if input is None:
         json_response = requests.get(config.NASA_REST_API_DEFAULT_SEARCH).json()
     else:
